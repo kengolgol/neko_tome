@@ -6,6 +6,18 @@ class DeviseCreateHosts < ActiveRecord::Migration[6.0]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.string :nickname,           null: false
+      t.string :last_name,          null: false
+      t.string :first_name,         null: false
+      t.integer :sex_id,            null: false
+      t.integer :personality_id,    null: false
+      t.integer :prefectures_id,    null: false
+      t.string :town,               null: false
+      t.string :address,            null: false
+      t.string :building
+      t.integer :job_id,            null: false
+      t.text :introduce
+      t.text :conditions
 
       ## Recoverable
       t.string   :reset_password_token

@@ -1,0 +1,176 @@
+<%= render "shared/header" %>
+<div class='main'>
+
+  <%# 画面上部の「うちのネコ、泊めてくれませんか？」帯部分 %>
+  <div class='title-contents'>
+    <h2 class='service-title'>
+      うちのネコ、<br>泊めてくれませんか？
+    </h2>
+    <p class='service-explain'>
+      nekotomeはネコと暮らす人、ネコと暮らしたい人、を繋ぐ
+    </p>
+    <p class='service-explain'>
+      マッチングアプリです
+    </p>
+  </div>
+  <%# /画面上部の「うちのネコ、泊めてくれませんか？」帯部分  %>
+
+  <%# nekotomeが選ばれる3つの理由部分 %>
+  <div class='select-reason-contents'>
+    <h2 class='title'>
+      nekotomeが選ばれる3つの理由
+    </h2>
+    <ul class='reason-lists'>
+      <li class='list'>
+        <%= image_tag "intro1.png", class:"list-pict" %>
+        <span class='reason-list-number'>1</span>
+        <h3 class='reason-list-text'>
+          <span class='reason-list-yellow-text'>5分</span>
+          ですぐに登録
+        </h3>
+        <p class='reason-list-description'>
+          スマホで入力するだけで簡単に登録できる！
+        </p>
+      </li>
+      <li class='list'>
+        <%= image_tag "intro2.png", class:"list-pict" %>
+        <span class='reason-list-number'>2</span>
+        <h3 class='reason-list-text'>
+          <span class='reason-list-yellow-text'>近くの人</span>
+          と繋がる
+        </h3>
+        <p class='reason-list-description'>
+          ネコ好きのご近所さんと気軽に繋がれる！
+        </p>
+      </li>
+      <li class='list'>
+        <%= image_tag "intro3.png", class:"list-pict" %>
+        <span class='reason-list-number'>3</span>
+        <h3 class='reason-list-text'>
+          安全
+          <span class='reason-list-yellow-text'>安心</span>
+        </h3>
+        <p class='reason-list-description'>
+          宿主さんの評価・レビューを丸裸！<br>心おきなく旅行に、仕事にGO!
+        </p>
+      </li>
+    </ul>
+  </div>
+  <%# /nekotomeが選ばれる3つの理由部分 %>
+
+  <%# 画面中央の「会員数日本一位」帯部分 %>
+  <div class='ad-contents'>
+    <h2 class='ad-title'>
+      会員数日本一位！！
+    </h2>
+    <p class='ad-explain'>
+      nekotomeは、ネコ飼いマッチングアプリで最も人気。
+    </p>
+    <p class='ad-explain'>
+      宿泊依頼・宿主さんも業界最多です！
+    </p>
+    <p class='ad-explain'>
+      好きな時間に、好きな人に大好きなネコを泊めてもらおう！
+    </p>
+  </div>
+  <%# /画面中央の「会員数日本一位」帯部分 %>
+
+  <%# nekotomeの特徴 %>
+  <div class='feature-contents'>
+    <h2 class='title'>
+      nekotomeの特徴
+    </h2>
+    <ul class='feature-lists'>
+      <li class='list'>
+        <%= image_tag "intro4.png", class:"list-pict" %>
+        <h3 class='feature-list-text'>
+          簡単に宿泊依頼ができる
+        </h3>
+        <p class='feature-list-description'>
+          スマホひとつで、いつでもどこでも簡単に宿泊依頼が可能！
+        </p>
+      </li>
+      <li class='list'>
+        <%= image_tag "intro5.png", class:"list-pict" %>
+        <h3 class='feature-list-text'>
+          即日予約もできる
+        </h3>
+        <p class='feature-list-description'>
+          宿主さんとの都合がつけば、急な出張や旅行の際にも対応してもらえる！
+        </p>
+      </li>
+      <li class='list'>
+        <%= image_tag "intro6.png", class:"list-pict" %>
+        <h3 class='feature-list-text'>
+          信頼できる宿主さんとは、<br>パートナーシップを！
+        </h3>
+        <p class='feature-list-description'>
+          相互フォローが可能であり、宿主さんとのやり取りも簡単！
+        </p>
+      </li>
+    </ul>
+  </div>
+  <%# /nekotomeの特徴 %>
+
+  <%# 宿主さん一覧 %>
+  <div class='host-contents'>
+    <h2 class='title'>本日のお宿</h2>
+    <div class="subtitle" >
+      周辺地域にお住まいの宿主さん
+    </div>
+    <ul class='host-lists'>
+    <%# if @items.empty? %>
+      <li class='list'>
+        <%= link_to '#' do %>
+        <%= image_tag "host0.png", class: "host-img" %>
+        <div class='host-info'>
+          <h3 class='host-name'>
+            宿主さん、登録してね！
+          </h3>
+          <div class='host-message'>
+            <span>泊めてくれニャー。</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+    <%# else %>
+      <%# @items.each do |item| %>
+        <li class='list'>
+          <%#= link_to item_path(item.id) do %>
+          <div class='host-img-content'>
+            <%#= image_tag item.image, class: "item-img" %>
+            <%# if item.buy != nil %>
+                <div class='thank-you'>
+                  <span>Thank you!!</span>
+                </div>
+            <%# end %>
+          </div>
+          <div class='host-info'>
+            <h3 class='host-name'>
+              <%#= item.name %>
+            </h3>
+            <div class='host-message'>
+              <span><%#= item.price %><br><%#= item.delivery_charge.name %></span>
+              <div class='star-btn'>
+                <%#= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+          <%# end %>
+        </li>
+      <%# end %>
+    <%# end %>
+    </ul>
+  </div>
+  <%# /宿主さん一覧 %>
+</div>
+<%= link_to('#', class: 'lodging-btn') do %>
+  <span class='lodging-btn-text'>宿泊を依頼する</span>
+  <%= image_tag 'order-icon1.png' , size: '185x50' ,class: "lodging-btn-icon" %>
+<% end %>
+<%= render "shared/footer" %>

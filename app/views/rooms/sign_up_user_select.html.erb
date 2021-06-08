@@ -1,0 +1,16 @@
+<div class="select-wrapper">
+  <h1>どっちで登録するニャ？</h1>
+  <%= image_tag "intro1.png", class:"select-pict" %>
+  <div class="select-content">
+    <div class="select-user">
+      <%= link_to new_guest_registration_path, class:"user-select-btn" do %>
+        <span>ゲスト</span><br>泊めてほしい人
+      <% end %>
+    </div>
+    <div class="select-user">
+      <%= link_to new_host_registration_path, class:"user-select-btn" do %>
+        <span>宿主</span><br>泊めたい人
+      <% end %>
+    </div>
+  </div>
+</div>
