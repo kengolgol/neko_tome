@@ -1,0 +1,34 @@
+<%# CSS・・・assets/stylesheets/shared/header.css %>
+<header class='top-page-header'>
+  <div class='search-bar-contents'>
+    <%#= link_to image_tag("furima-logo-color.png", class:"nekotome-icon"), "/" %>
+    <form class="search-form" action="#">
+      <input class='input-box' placeholder='キーワードから探す'>
+      <button class="search-button">
+        <%= image_tag "search.png", class:"search-icon" %>
+      </button>
+    </form>
+  </div>
+  <div class='nav'>
+    <ul class='lists-left'>
+      <li><%#= link_to 'カテゴリー', "#", class: "category-list" %></li>
+      <li><%#= link_to 'ブランド', "#", class: "brand-list" %></li>
+    </ul>
+    <ul class='lists-right'>
+      <% if guest_signed_in? %>
+        <% unless host_signed_in? %>
+          <li>(ゲスト) <%= link_to current_guest.nickname, "#", class: "user-nickname" %></li>
+          <li><%= link_to 'ログアウト', destroy_guest_session_path, method: :delete, class: "logout" %></li>
+        <% end %>
+      <% elsif host_signed_in? %>
+        <% unless guest_signed_in? %>
+          <li>(宿主) <%= link_to current_host.nickname, "#", class: "user-nickname" %></li>
+          <li><%= link_to 'ログアウト', destroy_host_session_path, method: :delete, class: "logout" %></li>
+        <% end %>
+      <% else %>
+        <li><%= link_to 'ログイン', sign_in_user_select_rooms_path, class: "login" %></li>
+        <li><%= link_to '新規登録', sign_up_user_select_rooms_path, class: "sign-up" %></li>
+      <% end %>
+    </ul>
+  </div>
+</header>

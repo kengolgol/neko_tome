@@ -1,0 +1,51 @@
+.select-wrapper {
+  background-color: #FFFFCC;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-wrapper h1 {
+  font-size: 8vh;
+}
+
+.select-pict {
+  width: 20vw;
+  height: 30vh;
+  margin-top: 3vh;
+}
+
+.select-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3vh;
+}
+
+.select-user {
+  background-color: #f90;
+  color: #fff;
+  width: 30vw;
+  height: 15vh;
+  border-radius: 15px;
+  font-size: 3.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3vh;
+}
+
+.user-select-btn {
+  display: block;
+  padding: 0 2vw;
+  height: 100%;
+  text-decoration: none;
+  color: #fff;
+  font-size: 4vh;
+}
+
+.user-select-btn span {
+  font-size: 2.5vh;
+}
