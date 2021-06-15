@@ -8,8 +8,10 @@
           <%= @guest.nickname %>さん　マイページ
         </h2>
         <div class="user_page_edit">
-          <% if current_guest.id == @guest.id %>
-            <%= link_to 'マイページ情報の編集', edit_guest_registration_path(@guest), class: "user_page_edit_btn" %>
+          <% if guest_signe_in? %>
+            <% if current_guest.id == @guest.id %>
+              <%= link_to 'マイページ情報の編集', edit_guest_registration_path(@guest), class: "user_page_edit_btn" %>
+            <% end %>
           <% end %>
         </div>
       </div>

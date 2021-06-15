@@ -1,5 +1,5 @@
 class HostMyPagesController < ApplicationController
   def show
-    @host = Host.find(current_host.id)
+    @host = Host.find(params[:id])
   end
 end
