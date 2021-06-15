@@ -1,0 +1,60 @@
+<%= render "shared/header" %>
+
+<div class="main">
+  <div class="inner">
+    <div class="user_wrapper">
+      <div class="user_page_header">
+        <h2 class="page-heading">
+          <%= @host.nickname %>さん　マイページ
+        </h2>
+        <div class="user_page_edit">
+          <% if current_host.id == @host.id %>
+            <%= link_to 'マイページ情報の編集', edit_host_registration_path(@host), class: "user_page_edit_btn" %>
+          <% end %>
+        </div>
+      </div>
+      
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="table__col1">名前</th>
+            <td class="table__col2"><%= @host.nickname %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">性別</th>
+            <td class="table__col2"><%= @host.sex.name %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">性格</th>
+            <td class="table__col2"><%= @host.personality.name %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">お住まいの地域</th>
+            <td class="table__col2"><%= @host.prefecture.name %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">職業</th>
+            <td class="table__col2"><%= @host.job.name %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">自己紹介</th>
+            <td class="table__col2"><%= @host.introduction %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">宿泊時の注意点</th>
+            <td class="table__col2"><%= @host.condition %></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="page-heading">
+        <%#= "#{@host.name}さんのプロトタイプ"%>
+      </h2>
+      <div class="user__card">
+        <%# 部分テンプレートでそのユーザーが投稿したプロトタイプ投稿一覧を表示する %>
+        <%#= render partial: "prototypes/prototype", collection: @prototypes %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

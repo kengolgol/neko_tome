@@ -1,0 +1,66 @@
+.inner {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.page-heading {
+  font-size: 30px;
+  margin-bottom: 28px;
+}
+
+.user_wrapper {
+  min-height: calc(100vh - 161px);
+}
+
+.user_page_header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5vh;
+}
+
+/* 編集ボタン　*/
+.user_page_edit_btn {
+  height: 5vh;
+  font-size: 2vh;
+  padding: 1vh 1vw;
+  background-color: #f90;
+  border-radius: 5px;
+  color: #fff;
+}
+/* 編集ボタン　*/
+
+/* アイコン画像 */
+.user-page-img {
+  width:  40vw;
+  height: 40vh;
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+}
+/* アイコン画像 */
+
+.table {
+  border-collapse: collapse;
+  background-color: #fff;
+  margin-bottom: 32px;
+  width: 80%;
+}
+.table__col1 {
+  text-align: left;
+  font-weight: bold;
+  border-collapse: collapse;
+  border: 1px solid #000;
+  width: 15%;
+  padding: 8px;
+}
+.table__col2 {
+  text-align: left;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  width: 70%;
+  padding: 16px 8px;
+}
+.user__card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}

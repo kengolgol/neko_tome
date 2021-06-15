@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     registrations: 'guests/registrations'
   }
 
+  resources :guest_my_pages, only: :show
+  resources :host_my_pages, only: :show
+
   resources :rooms, only: :index do
     collection do
       get 'search'

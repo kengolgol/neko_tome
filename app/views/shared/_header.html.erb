@@ -17,12 +17,12 @@
     <ul class='lists-right'>
       <% if guest_signed_in? %>
         <% unless host_signed_in? %>
-          <li>(ゲスト) <%= link_to current_guest.nickname, "#", class: "user-nickname" %></li>
+          <li>(ゲスト) <%= link_to current_guest.nickname, guest_my_page_path(current_guest.id), class: "user-nickname" %></li>
           <li><%= link_to 'ログアウト', destroy_guest_session_path, method: :delete, class: "logout" %></li>
         <% end %>
       <% elsif host_signed_in? %>
         <% unless guest_signed_in? %>
-          <li>(宿主) <%= link_to current_host.nickname, "#", class: "user-nickname" %></li>
+          <li>(宿主) <%= link_to current_host.nickname, host_my_page_path(current_host.id), class: "user-nickname" %></li>
           <li><%= link_to 'ログアウト', destroy_host_session_path, method: :delete, class: "logout" %></li>
         <% end %>
       <% else %>
