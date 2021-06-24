@@ -8,7 +8,7 @@
           <%= @guest.nickname %>さん　マイページ
         </h2>
         <div class="user_page_edit">
-          <% if guest_signe_in? %>
+          <% if guest_signed_in? %>
             <% if current_guest.id == @guest.id %>
               <%= link_to 'マイページ情報の編集', edit_guest_registration_path(@guest), class: "user_page_edit_btn" %>
             <% end %>
@@ -19,6 +19,18 @@
       <div class='user-page-img-content'>
         <%= image_tag @guest.image, class: "user-page-img" %>
       </div>
+
+      <% if guest_signed_in? && current_guest.id == @guest.id %>
+        <div class="follower-list">
+        <%= link_to "あなたがフォローしている宿主さん", {controller: :guest_my_pages,action: :follow_list,id: @guest.id}, method: :get, class: "follower-list-page" %> 　 
+        <span class="follower-count"><%= @guest.follow_count %>人</span>
+      </div>
+      <% else %>
+        <div class="follower-list">
+        <%= link_to "このゲストさんがフォローしている宿主さん", {controller: :guest_my_pages,action: :follow_list,id: @guest.id}, method: :get, class: "follower-list-page" %> 　 
+        <span class="follower-count"><%= @host.follow_count %>人</span>
+      </div>
+      <% end %>
 
       <table class="table">
         <tbody>

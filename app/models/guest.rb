@@ -4,16 +4,20 @@ class Guest < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Association
   has_many :entrys, dependent: :destroy
   has_many :rooms, through: :entries
   has_one_attached :image
+  acts_as_follower
 
+  # ActiveHash
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :sex
   belongs_to :personality
   belongs_to :prefecture
   belongs_to :job
 
+  # Validation
   with_options presence: { message: "に値を入力してください" } do
     validates :nickname
     validates :town
@@ -34,7 +38,7 @@ class Guest < ApplicationRecord
   end
 
 
-  # パスワードなしで更新するためのメソッド >> registrations_controllerにて呼び出し
+  # パスワードなしで更新するためのメソッド 
   def configure_update_without_current_password(params, *options)
     params.delete(:current_password)
 

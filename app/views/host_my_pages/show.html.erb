@@ -12,6 +12,8 @@
             <% if current_host.id == @host.id %>
               <%= link_to 'マイページ情報の編集', edit_host_registration_path(@host), class: "user_page_edit_btn" %>
             <% end %>
+          <% else %>
+              <%= render partial: 'follow', locals: { host: @host } %>
           <% end %>
         </div>
       </div>
@@ -19,7 +21,20 @@
       <div class='user-page-img-content'>
         <%= image_tag @host.image, class: "user-page-img" %>
       </div>
+
+      <% if host_signed_in? && current_host.id == @host.id %>
+        <div class="follower-list">
+        <%= link_to "あなたをフォローしている人", {controller: :host_my_pages,action: :follower_list,id: @host.id}, method: :get, class: "follower-list-page" %> 　 
+        <span class="follower-count"><%= @host.followers_count %>人</span>
+      </div>
+      <% else %>
+        <div class="follower-list">
+        <%= link_to "この宿主さんをフォローしている人", {controller: :host_my_pages,action: :follower_list,id: @host.id}, method: :get, class: "follower-list-page" %> 　 
+        <span class="follower-count"><%= @host.followers_count %>人</span>
+      </div>
+      <% end %>
       
+
       <table class="table">
         <tbody>
           <tr>
@@ -52,6 +67,8 @@
           </tr>
         </tbody>
       </table>
+
+      <%# 宿主さんからのお知らせ %>
       <h2 class="page-heading">
         <%#= "#{@host.name}さんのプロトタイプ"%>
       </h2>
@@ -59,6 +76,8 @@
         <%# 部分テンプレートでそのユーザーが投稿したプロトタイプ投稿一覧を表示する %>
         <%#= render partial: "prototypes/prototype", collection: @prototypes %>
       </div>
+      <%# 宿主さんからのお知らせ %>
+
     </div>
   </div>
 </div>

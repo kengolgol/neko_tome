@@ -29,6 +29,17 @@
 }
 /* 編集ボタン　*/
 
+/* フォローボタン */
+.follow-btn {
+  height: 5vh;
+  font-size: 2vh;
+  padding: 1vh 1vw;
+  background-color: #f90;
+  border-radius: 5px;
+  color: #fff;
+}
+/* フォローボタン */
+
 /* アイコン画像 */
 .user-page-img {
   width:  40vw;
@@ -37,10 +48,30 @@
 }
 /* アイコン画像 */
 
+/* フォロワーリストへのリンク */
+.follower-list {
+  margin-top: 10px;
+}
+
+.follower-list-page {
+  height: 5vh;
+  font-size: 2vh;
+  padding: 1vh 1vw;
+  background-color: #f90;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.follower-count {
+  font-weight: bold;
+  font-size: 2vh;
+}
+/* フォロワーリストへのリンク */
+
 .table {
   border-collapse: collapse;
   background-color: #fff;
-  margin-bottom: 32px;
+  margin: 32px 0;
   width: 80%;
 }
 .table__col1 {
