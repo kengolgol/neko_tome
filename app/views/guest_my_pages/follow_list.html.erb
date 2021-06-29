@@ -1,0 +1,33 @@
+<%= render "shared/header" %>
+
+<div class="main">
+  <div class="inner">
+    <div class="user_wrapper">
+      <div class="user_page_header">
+        <h2 class="page-heading">
+          <% if guest_signed_in? && current_guest.id == @guest.id %>
+            <%= link_to "あなた", guest_my_page_path(@guest.id) %>がフォローしている宿主さん　<%= @guest.follow_count %>人
+          <% else %>
+            <%= link_to "#{@guest.nickname}さん", guest_my_page_path(@guest.id) %>がフォローしている宿主さん　<%= @guest.follow_count %>人
+          <% end %>
+        </h2>
+        <div class="user_page_edit">
+          <% if guest_signed_in? %>
+            <% if current_guest.id == @guest.id %>
+              <%= link_to 'フォローリストの管理', '#', class: "user_page_edit_btn" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      
+      <%# フォローの一覧　%>
+      <%= render partial: "host", collection: @follower_hosts %>
+      <%# フォローの一覧　%>
+
+
+
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

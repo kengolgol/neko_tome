@@ -61,6 +61,11 @@ class Hosts::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  # パスワードなしで更新するためのメソッド
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
   def prevent_guest
   if guest_signed_in?
     redirect_to root_path

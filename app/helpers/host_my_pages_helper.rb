@@ -1,0 +1,2 @@
+module HostMyPagesHelper
+end

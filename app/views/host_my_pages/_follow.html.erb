@@ -1,0 +1,7 @@
+<div id="follow_form">
+  <% if current_guest.following?(host) %>
+    <%= link_to "フォローをはずす", {controller: :host_my_pages,action: :unfollow,id: host.id}, method: :put, class:"btn follow-btn"%>
+  <% else %>
+    <%= link_to "フォローする", {controller: :host_my_pages,action: :follow,id: host.id}, method: :put ,class:"btn follow-btn" %>
+  <% end %>
+</div>

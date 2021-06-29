@@ -4,12 +4,20 @@ class Host < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Association
+  has_many :entrys, dependent: :destroy
+  has_many :rooms, through: :entries
+  has_one_attached :image
+  acts_as_followable
+
+  # ActiveHash
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :sex
   belongs_to :personality
   belongs_to :prefecture
   belongs_to :job
 
+  # Validation
   with_options presence: { message: "に値を入力してください" } do
     validates :nickname
     validates :town
@@ -29,5 +37,18 @@ class Host < ApplicationRecord
     end
   end
 
-  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i , message: "半角英数字混合で入力してください"}
+  # パスワードなしで更新するためのメソッド
+  def configure_update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
+
 end

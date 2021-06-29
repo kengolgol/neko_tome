@@ -1,43 +1,153 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render "shared/second-header"%>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "guests/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%= form_with model: @guest, url: guest_registration_path, method: :patch, class: 'registration-main', local: true do |f| %>
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      ゲストさん情報編集
+    </h1>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <%= render 'shared/error_messages', model: f.object %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <%# アイコン画像 %>
+  <div class="form-group">
+    <div class="img-upload">
+      <div class='form-text-wrap'>
+        <label class="form-text">アイコン画像</label>
+        <span class="form-any">任意</span>
+        <span class="release-info">（公開あり）</span>
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image, id:"icon-image" %>
+      </div>
+    </div>
+  </div>
+  <%# /アイコン画像 %>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">ニックネーム</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開あり）</span>
+    </div>
+    <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"例) nekotome花子", maxlength:"40" %>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">メールアドレス</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開なし）</span>
+    </div>
+    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
+  </div>
+  
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">お名前(全角)</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開なし）</span>
+    </div>
+    <div class='input-name-wrap'>
+      <%= f.text_area :last_name, class:"input-name", id:"last-name", placeholder:"例) 山田" %>
+      <%= f.text_area :first_name, class:"input-name", id:"first-name", placeholder:"例) 陸太郎" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">性別</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開あり）</span>
+    </div>
+    <div class='input-name-wrap'>
+        <%= f.collection_select(:sex_id, Sex.all, :id, :name, {}, {class:"select-box", id:"sex"}) %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">性格</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開あり）</span>
+    </div>
+    <div class='input-name-wrap'>
+        <%= f.collection_select(:personality_id, Personality.all, :id, :name, {}, {class:"select-box", id:"personality"}) %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">郵便番号</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開なし）</span>
+    </div>
+    <%= f.text_field :postal_code, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
   </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">都道府県</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開あり）</span>
+    </div>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">市区町村</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開なし）</span>
+    </div>
+    <%= f.text_field :town, class:"input-default", id:"town", placeholder:"例）横浜市緑区"%>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">番地</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開なし）</span>
+    </div>
+    <%= f.text_field :address, class:"input-default", id:"address", placeholder:"例）青山1-1-1"%>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">建物名</label>
+      <span class="form-any">任意</span>
+      <span class="release-info">（公開なし）</span>
+    </div>
+    <%= f.text_field :building, class:"input-default", id:"building", placeholder:"例）柳ビル103"%>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">職業</label>
+      <span class="indispensable">必須</span>
+      <span class="release-info">（公開あり）</span>
+    </div>
+    <div class='input-name-wrap'>
+        <%= f.collection_select(:job_id, Job.all, :id, :name, {}, {class:"select-box", id:"job"}) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">自己紹介</label>
+      <span class="form-any">任意</span>
+      <span class="release-info">（公開あり）</span>
+    </div>
+    <%= f.text_field :introduction, class:"input-default", id:"introduction", placeholder:"" %>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">宿主さんへのお願い</label>
+      <span class="form-any">任意</span>
+      <span class="release-info">（公開あり）</span>
+    </div>
+    <%= f.text_field :request, class:"input-default", id:"request", placeholder:""%>
+  </div>
+ 
+  <div class='register-btn'>
+    <%= f.submit "ゲスト情報の更新" ,class:"register-orange-btn" %>
+  </div>
+</div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= render "shared/second-footer"%>
